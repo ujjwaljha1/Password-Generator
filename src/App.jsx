@@ -1,6 +1,9 @@
 import { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 function App() {
+  const navigate = useNavigate();
+  
   const [length, setLength] = useState(8);
   const [includeNumbers, setIncludeNumbers] = useState(false);
   const [includeChars, setIncludeChars] = useState(false);
@@ -15,7 +18,6 @@ function App() {
       alert('Please select at least one option (characters or numbers).');
       return;
     }
-
     let result = '';
     for (let i = 0; i < length; i++) {
       result += chars.charAt(Math.floor(Math.random() * chars.length));
@@ -78,6 +80,13 @@ function App() {
           className="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
         >
           Generate Password
+        </button>
+
+        <button
+          onClick={() => navigate('/callback')}
+          className="w-full bg-purple-600 hover:bg-purple-700 text-white font-semibold py-2 px-4 rounded-md transition duration-200"
+        >
+          Go to useCallback Version
         </button>
 
         {password && (
